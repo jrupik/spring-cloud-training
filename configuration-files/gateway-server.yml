@@ -2,7 +2,7 @@ spring:
   cloud:
     gateway:
       routes:
-          - id: payments
+        - id: payments
           predicates:
             - Path=/api/payments
           uri: lb://PAYMENTS-SERVICE
