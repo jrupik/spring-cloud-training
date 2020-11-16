@@ -1,10 +1,10 @@
-package pl.training.configurationserver;
+package pl.training.paymentsservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ConfigurationServerApplicationTests {
+class PaymentsServiceApplicationTests {
 
 	@Test
 	void contextLoads() {

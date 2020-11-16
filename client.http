@@ -1,0 +1,19 @@
+GET http://localhost:8888/application-default.yml
+Accept: text/html
+
+###
+
+GET http://localhost:8888/application-development.yml
+Accept: text/html
+
+###
+
+GET http://localhost:8888/application-development.properties
+Accept: text/html
+
+###
+
+GET http://localhost:8888/payments-service-development.yml
+Accept: text/html
+
+###
