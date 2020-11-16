@@ -13,6 +13,7 @@
 
     <modules>
         <module>configuration-server</module>
+        <module>payments-api</module>
         <module>payments-service</module>
     </modules>
 
