@@ -14,6 +14,7 @@
     <modules>
         <module>configuration-server</module>
         <module>discovery-server</module>
+        <module>gateway-server</module>
         <module>payments-api</module>
         <module>payments-service</module>
     </modules>
