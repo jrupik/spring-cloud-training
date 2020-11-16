@@ -1,7 +1,7 @@
 spring:
   cloud:
     gateway:
-      rourtes:
+      routes:
           - id: payments
           predicates:
             - Path=/api/payments
