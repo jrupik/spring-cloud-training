@@ -4,7 +4,7 @@ spring:
       routes:
         - id: payments
           predicates:
-            - Path=/api/payments
+            - Path=/api/payments/**
           uri: lb://PAYMENTS-SERVICE
           filters:
-            - RewritePath=/api/(?<payments>.*), /payments/$\{payments}
+            - RewritePath=/api(?<segment>.*), $\{segment}
