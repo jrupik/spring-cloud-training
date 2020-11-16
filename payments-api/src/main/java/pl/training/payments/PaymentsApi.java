@@ -12,6 +12,6 @@ public interface PaymentsApi {
     ResponseEntity<PaymentTransferObject> process(@RequestBody PaymentRequestTransferObject paymentRequestTransferObject);
 
     @GetMapping("{id}")
-    PaymentTransferObject getPayment(@PathVariable String id);
+    ResponseEntity<PaymentTransferObject> getPayment(@PathVariable String id);
 
 }

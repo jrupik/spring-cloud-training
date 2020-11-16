@@ -23,9 +23,9 @@ public class PaymentsController implements PaymentsApi {
     }
 
     @Override
-    public PaymentTransferObject getPayment(String id) {
+    public ResponseEntity<PaymentTransferObject> getPayment(String id) {
         var payment = paymentsService.getPayment(id);
-        return paymentsMapper.toPaymentTransferObject(payment);
+        return ResponseEntity.ok(paymentsMapper.toPaymentTransferObject(payment));
     }
 
     @ExceptionHandler(PaymentNotFoundException.class)
