@@ -1,4 +1,4 @@
-package pl.training.paymentsservice;
+package pl.training.payments;
 
 import lombok.*;
 import org.javamoney.moneta.FastMoney;
@@ -14,6 +14,7 @@ import java.util.Objects;
 @Setter
 @ToString
 @Builder
+@AllArgsConstructor
 @NoArgsConstructor
 public class Payment {
 

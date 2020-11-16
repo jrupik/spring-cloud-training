@@ -1,4 +1,4 @@
-package pl.training.paymentsservice;
+package pl.training.payments;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

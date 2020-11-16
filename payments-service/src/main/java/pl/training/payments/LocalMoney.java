@@ -1,4 +1,4 @@
-package pl.training.paymentsservice;
+package pl.training.payments;
 
 import org.javamoney.moneta.FastMoney;
 

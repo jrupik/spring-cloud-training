@@ -17,3 +17,17 @@ GET http://localhost:8888/payments-service-development.yml
 Accept: text/html
 
 ###
+
+POST  http://localhost:9000/payments
+Accept: application/json
+Content-Type: application/json
+
+{
+   "value": "1000 PLN"
+}
+
+###
+
+GET http://localhost:9000/payments/58472368-b2e0-47c9-ae8a-ac4024e761eb
+Accept: application/json
+Content-Type: application/json

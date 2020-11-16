@@ -1,4 +1,4 @@
-package pl.training.paymentsservice;
+package pl.training.payments;
 
 public interface PaymentsService {
 

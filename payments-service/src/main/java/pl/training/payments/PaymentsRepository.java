@@ -1,4 +1,4 @@
-package pl.training.paymentsservice;
+package pl.training.payments;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

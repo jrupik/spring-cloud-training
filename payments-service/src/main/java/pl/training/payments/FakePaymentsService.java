@@ -1,4 +1,4 @@
-package pl.training.paymentsservice;
+package pl.training.payments;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
