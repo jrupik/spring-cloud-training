@@ -28,9 +28,11 @@ public class PaymentsController implements PaymentsApi {
         return ResponseEntity.ok(paymentsMapper.toPaymentTransferObject(payment));
     }
 
+    /*
     @ExceptionHandler(PaymentNotFoundException.class)
     public ResponseEntity<Void> onPaymentNotFound(PaymentNotFoundException exception) {
         return ResponseEntity.notFound().build();
     }
+    */
 
 }
