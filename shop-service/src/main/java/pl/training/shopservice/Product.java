@@ -1,11 +1,15 @@
 package pl.training.shopservice;
 
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.javamoney.moneta.FastMoney;
 
-import javax.persistence.*;
-import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.util.Objects;
 
 @Table(name = "orders")
@@ -13,14 +17,13 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
-public class Order {
+public class Product {
 
     @GeneratedValue
     @Id
     private Long id;
-    private Long clientId;
-    @ManyToMany
-    private List<Product> products;
+    private String name;
+    private FastMoney price;
 
     @Override
     public boolean equals(Object otherObject) {
@@ -30,8 +33,8 @@ public class Order {
         if (!(otherObject instanceof Order)) {
             return false;
         }
-        Order otherOrder = (Order) otherObject;
-        return id != null && Objects.equals(id, otherOrder.getId());
+        Product otherProduct = (Product) otherObject;
+        return id != null && Objects.equals(id, otherProduct.getId());
     }
 
     @Override
