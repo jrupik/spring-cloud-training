@@ -12,10 +12,10 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(value = "payments", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 public interface PaymentsApi {
 
-    @PostMapping
+    @RequestMapping(method = RequestMethod.POST)
     ResponseEntity<PaymentTransferObject> process(@Valid @RequestBody PaymentRequestTransferObject paymentRequestTransferObject);
 
-    @GetMapping("{id}")
-    ResponseEntity<PaymentTransferObject> getPayment(@PathVariable String id);
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    ResponseEntity<PaymentTransferObject> getPayment(@PathVariable("id") String id);
 
 }
