@@ -11,6 +11,6 @@ spring:
         - id: shop
             predicates:
               - Path=/api/shop/**
-            uri: lb://PAYMENTS-SERVICE
+            uri: lb://SHOP-SERVICE
             filters:
               - RewritePath=/api/shop(?<segment>.*), $\{segment}
