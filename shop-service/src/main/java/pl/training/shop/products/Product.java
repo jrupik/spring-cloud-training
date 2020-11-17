@@ -1,15 +1,11 @@
-package pl.training.shopservice;
+package pl.training.shop.products;
 
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.javamoney.moneta.FastMoney;
+import pl.training.commons.FastMoneyConverter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Table(name = "products")
@@ -17,12 +13,17 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class Product {
 
     @GeneratedValue
     @Id
     private Long id;
+    @NonNull
     private String name;
+    @Convert(converter = FastMoneyConverter.class)
+    @NonNull
     private FastMoney price;
 
     @Override

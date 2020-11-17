@@ -1,4 +1,4 @@
-package pl.training.shopservice;
+package pl.training.shop.orders;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -10,9 +10,14 @@ import pl.training.shop.OrdersApi;
 @RequiredArgsConstructor
 public class OrdersController implements OrdersApi {
 
+    private final OrdersMapper ordersMapper;
+    private final OrdersService ordersService;
+
     @Override
     public ResponseEntity<Void> placeOrder(OrderTransferObject orderTransferObject) {
-        return null;
+        var order = ordersMapper.toOrder(orderTransferObject);
+        ordersService.placeOrder(order);
+        return ResponseEntity.accepted().build();
     }
 
 }

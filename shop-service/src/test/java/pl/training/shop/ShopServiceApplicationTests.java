@@ -1,4 +1,4 @@
-package pl.training.shopservice;
+package pl.training.shop;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

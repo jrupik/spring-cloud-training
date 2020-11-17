@@ -1,8 +1,7 @@
-package pl.training.shopservice;
+package pl.training.shop.orders;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+import pl.training.shop.products.Product;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,6 +12,8 @@ import java.util.Objects;
 @Setter
 @ToString
 @Entity
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class Order {
 
     @GeneratedValue
@@ -20,6 +21,7 @@ public class Order {
     private Long id;
     private Long clientId;
     @ManyToMany
+    @NonNull
     private List<Product> products;
 
     @Override
