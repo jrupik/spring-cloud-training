@@ -16,10 +16,11 @@ public abstract class OrdersMapper {
     private ProductsService productsService;
 
     public Order toOrder(OrderTransferObject orderTransferObject) {
-        return new Order(orderTransferObject.getProducts().stream()
+        var products = orderTransferObject.getProducts().stream()
                 .map(IdTransferObject::getId)
                 .map(productsService::getById)
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList());
+        return new Order(orderTransferObject.getClientId(), products);
     }
 
 }

@@ -19,6 +19,7 @@ public class Order {
     @GeneratedValue
     @Id
     private Long id;
+    @NonNull
     private Long clientId;
     @ManyToMany
     @NonNull
