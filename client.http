@@ -62,3 +62,18 @@ Content-Type: application/json
 GET  http://localhost:8080/api/payments/565f87ac-a6ad-4d4c-b080-145f27a70eaf
 Accept: application/json
 Content-Type: application/json
+
+###
+
+POST  http://localhost:9001/api/shop/orders
+Accept: application/json
+Content-Type: application/json
+
+{
+  "clientId": 1,
+  "products": [
+    {
+      "id": 1
+    }
+  ]
+}
