@@ -40,10 +40,10 @@ public class ShopConfiguration {
                 .build();
     }
 
-    /*@LoadBalanced
+    @LoadBalanced
     @Bean
     public RestTemplate restTemplate() {
         return new RestTemplate();
-    }*/
+    }
 
 }
