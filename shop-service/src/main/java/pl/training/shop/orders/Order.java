@@ -27,7 +27,7 @@ public class Order {
     @ManyToMany
     @NonNull
     private List<Product> products;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Payment payment;
 
     public FastMoney getTotalValue() {

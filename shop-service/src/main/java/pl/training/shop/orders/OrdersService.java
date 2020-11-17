@@ -20,12 +20,15 @@ public class OrdersService {
 
     public void placeOrder(Order order) {
         var paymentValue = order.getTotalValue().add(orderFee.getValue());
-       // var payment = paymentsService.pay(paymentValue);
-                //.orElseThrow(PaymentInitializationException::new);
-        var payment = new Payment();
-        payment.setId(UUID.randomUUID().toString());
+        var payment = paymentsService.pay(paymentValue)
+                .orElseThrow(PaymentInitializationException::new);
         order.setPayment(payment);
         ordersRepository.saveAndFlush(order);
+    }
+
+    public Order getById(Long id) {
+        return ordersRepository.findById(id)
+                .orElseThrow(OrderNotFoundException::new);
     }
 
 }

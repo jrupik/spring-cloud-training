@@ -1,5 +1,6 @@
 package pl.training.shop;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.validation.Valid;
@@ -17,5 +18,7 @@ public class OrderTransferObject {
     @Valid
     @NotEmpty
     private List<IdTransferObject> products;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    private String status;
 
 }

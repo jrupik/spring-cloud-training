@@ -1,6 +1,7 @@
 package pl.training.payments;
 
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,7 @@ public class FakePaymentsService implements PaymentsService {
     private final PaymentIdGenerator paymentIdGenerator;
     private final PaymentsRepository paymentsRepository;
     private final Source source;
+    private final PaymentsMapper paymentsMapper;
 
     @Override
     public Payment process(PaymentRequest paymentRequest) {
@@ -25,20 +27,7 @@ public class FakePaymentsService implements PaymentsService {
                 .status(PaymentStatus.STARTED)
                 .timestamp(LocalDateTime.now())
                 .build();
-        new Thread(() -> {
-                try {
-                    Thread.sleep(3_000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                payment.setStatus(PaymentStatus.CONFIRMED);
-                var paymentTransferObject = new PaymentTransferObject();
-                paymentTransferObject.setId(payment.getId());
-                paymentTransferObject.setStatus(PaymentStatusTransferObject.CONFIRMED);
-                paymentTransferObject.setTimestamp(payment.getTimestamp());
-                paymentTransferObject.setValue(payment.getValue().toString());
-                source.output().send(MessageBuilder.withPayload(paymentTransferObject).build());
-        }).start();
+        processPayment(payment);
         return paymentsRepository.saveAndFlush(payment);
     }
 
@@ -46,6 +35,20 @@ public class FakePaymentsService implements PaymentsService {
     public Payment getPayment(String id) {
         return paymentsRepository.findById(id)
                 .orElseThrow(PaymentNotFoundException::new);
+    }
+
+    private void processPayment(Payment payment) {
+        new Thread(() -> {
+            fakeDelay();
+            var paymentTransferObject = paymentsMapper.toPaymentTransferObject(payment);
+            paymentTransferObject.setStatus(PaymentStatusTransferObject.CONFIRMED);
+            source.output().send(MessageBuilder.withPayload(paymentTransferObject).build());
+        }).start();
+    }
+
+    @SneakyThrows
+    private void fakeDelay() {
+        Thread.sleep(10_000);
     }
 
 }
