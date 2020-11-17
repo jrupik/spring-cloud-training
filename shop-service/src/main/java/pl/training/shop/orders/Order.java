@@ -1,6 +1,9 @@
 package pl.training.shop.orders;
 
 import lombok.*;
+import org.javamoney.moneta.FastMoney;
+import pl.training.commons.LocalMoney;
+import pl.training.shop.payments.Payment;
 import pl.training.shop.products.Product;
 
 import javax.persistence.*;
@@ -24,6 +27,14 @@ public class Order {
     @ManyToMany
     @NonNull
     private List<Product> products;
+    @OneToOne
+    private Payment payment;
+
+    public FastMoney getTotalValue() {
+        return products.stream()
+                .map(Product::getPrice)
+                .reduce(LocalMoney.zero(), FastMoney::add);
+    }
 
     @Override
     public boolean equals(Object otherObject) {

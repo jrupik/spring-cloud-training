@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
 import pl.training.commons.LocalMoney;
 import pl.training.shop.products.Product;
 import pl.training.shop.products.ProductsRepository;
@@ -28,13 +29,17 @@ public class ShopConfiguration {
         productsRepository.saveAndFlush(new Product("Angular in action", LocalMoney.of(150)));
     }
 
-
     @Bean
     public Docket docket() {
         return new Docket(DocumentationType.OAS_30)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("pl.training.shop"))
                 .build();
+    }
+
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 
 }
