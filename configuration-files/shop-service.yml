@@ -8,4 +8,4 @@ spring:
           destination: payments-topic
           content-type: application/json
           groups: shop
-order-fee: 10
+order-fee: 20
