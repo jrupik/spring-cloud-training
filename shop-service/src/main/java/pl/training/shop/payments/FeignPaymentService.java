@@ -24,6 +24,7 @@ public class FeignPaymentService implements PaymentsService {
 
     private final PaymentsApi paymentsApi;
     private final PaymentsMapper paymentsMapper;
+    private final PaymentsRepository paymentsRepository;
 
     @Override
     public Optional<Payment> pay(FastMoney value) {
@@ -35,6 +36,13 @@ public class FeignPaymentService implements PaymentsService {
             log.warning("Payment failed: " + exception.getMessage());
         }
         return Optional.empty();
+    }
+
+    @StreamListener(Sink.INPUT)
+    public void updatePaymentStatus(PaymentTransferObject paymentTransferObject) {
+        log.info("Payment status update: " + paymentTransferObject.toString());
+        var payment = paymentsMapper.toPayment(paymentTransferObject);
+        paymentsRepository.saveAndFlush(payment);
     }
 
 }

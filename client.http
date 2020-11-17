@@ -28,7 +28,7 @@ Content-Type: application/json
 
 ###
 
-GET http://localhost:9000/payments/c683b6d8-98d0-48b4-bc62-4a98ccec9e75
+GET http://localhost:9000/payments/64c47986-0b96-4ac9-94fd-604b695da4c0
 Accept: application/json
 Content-Type: application/json
 
@@ -65,7 +65,7 @@ Content-Type: application/json
 
 ###
 
-GET  http://localhost:8080/api/payments/565f87ac-a6ad-4d4c-b080-145f27a70eaf
+GET  http://localhost:8080/api/payments/64c47986-0b96-4ac9-94fd-604b695da4c0
 Accept: application/json
 Content-Type: application/json
 

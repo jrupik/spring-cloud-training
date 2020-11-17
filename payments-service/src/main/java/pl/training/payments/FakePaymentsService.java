@@ -40,8 +40,9 @@ public class FakePaymentsService implements PaymentsService {
     private void processPayment(Payment payment) {
         new Thread(() -> {
             fakeDelay();
+            payment.setStatus(PaymentStatus.CONFIRMED);
+            paymentsRepository.saveAndFlush(payment);
             var paymentTransferObject = paymentsMapper.toPaymentTransferObject(payment);
-            paymentTransferObject.setStatus(PaymentStatusTransferObject.CONFIRMED);
             source.output().send(MessageBuilder.withPayload(paymentTransferObject).build());
         }).start();
     }
