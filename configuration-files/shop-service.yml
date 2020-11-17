@@ -6,5 +6,5 @@ spring:
       bindings:
         input:
           destination: payments-topic
-          content-type: application
+          content-type: application/json
           groups: shop

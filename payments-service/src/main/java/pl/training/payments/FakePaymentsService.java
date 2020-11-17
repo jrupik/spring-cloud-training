@@ -38,7 +38,7 @@ public class FakePaymentsService implements PaymentsService {
                 paymentTransferObject.setTimestamp(payment.getTimestamp());
                 paymentTransferObject.setValue(payment.getValue().toString());
                 source.output().send(MessageBuilder.withPayload(paymentTransferObject).build());
-        });
+        }).start();
         return paymentsRepository.saveAndFlush(payment);
     }
 

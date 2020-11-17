@@ -6,4 +6,4 @@ spring:
       bindings:
         output:
           destination: payments-topic
-          content-type: application
+          content-type: application/json
