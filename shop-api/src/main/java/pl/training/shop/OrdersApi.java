@@ -12,10 +12,10 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 @RequestMapping(value = "orders", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 public interface OrdersApi {
 
-    @PostMapping
+    @RequestMapping(method = RequestMethod.POST)
     ResponseEntity<Void> placeOrder(@Valid @RequestBody OrderTransferObject orderTransferObject);
 
-    @GetMapping("{id}")
-    ResponseEntity<OrderTransferObject> getOrder(@PathVariable Long id);
+    @RequestMapping(value = "{id}", method = RequestMethod.GET)
+    ResponseEntity<OrderTransferObject> getOrder(@PathVariable("id") Long id);
 
 }

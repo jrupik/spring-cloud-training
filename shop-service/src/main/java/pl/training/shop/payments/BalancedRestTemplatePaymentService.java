@@ -5,7 +5,6 @@ import lombok.extern.java.Log;
 import org.javamoney.moneta.FastMoney;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Sink;
-import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
@@ -15,7 +14,6 @@ import pl.training.payments.PaymentTransferObject;
 
 import java.util.Optional;
 
-@Primary
 @Transactional
 @Service
 @Log
