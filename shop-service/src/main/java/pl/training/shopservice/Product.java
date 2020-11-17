@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import java.util.Objects;
 
-@Table(name = "orders")
+@Table(name = "products")
 @Getter
 @Setter
 @ToString
@@ -30,7 +30,7 @@ public class Product {
         if (this == otherObject) {
             return true;
         }
-        if (!(otherObject instanceof Order)) {
+        if (!(otherObject instanceof Product)) {
             return false;
         }
         Product otherProduct = (Product) otherObject;
