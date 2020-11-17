@@ -18,6 +18,8 @@
         <module>gateway-server</module>
         <module>payments-api</module>
         <module>payments-service</module>
+        <module>shop-api</module>
+        <module>shop-service</module>
     </modules>
 
 </project>
