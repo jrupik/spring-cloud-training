@@ -8,6 +8,8 @@ import pl.training.shop.payments.Payment;
 import pl.training.shop.payments.PaymentInitializationException;
 import pl.training.shop.payments.PaymentsService;
 
+import java.util.UUID;
+
 @Service
 @RequiredArgsConstructor
 public class OrdersService {
@@ -18,9 +20,11 @@ public class OrdersService {
 
     public void placeOrder(Order order) {
         var paymentValue = order.getTotalValue().add(orderFee.getValue());
-        var payment = paymentsService.pay(paymentValue);
+       // var payment = paymentsService.pay(paymentValue);
                 //.orElseThrow(PaymentInitializationException::new);
-        order.setPayment(payment.orElse(new Payment()));
+        var payment = new Payment();
+        payment.setId(UUID.randomUUID().toString());
+        order.setPayment(payment);
         ordersRepository.saveAndFlush(order);
     }
 
