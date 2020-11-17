@@ -9,8 +9,8 @@ spring:
           filters:
             - RewritePath=/api(?<segment>.*), $\{segment}
         - id: shop
-            predicates:
-              - Path=/api/shop/**
-            uri: lb://SHOP-SERVICE
-            filters:
-              - RewritePath=/api/shop(?<segment>.*), $\{segment}
+          predicates:
+            - Path=/api/shop/**
+          uri: lb://SHOP-SERVICE
+          filters:
+            - RewritePath=/api/shop(?<segment>.*), $\{segment}
