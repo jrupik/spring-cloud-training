@@ -20,7 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class FeignPaymentService implements PaymentsService {
 
-    //private final PaymentsApi paymentsApi;
+    private final PaymentsApi paymentsApi;
     private final PaymentsMapper paymentsMapper;
 
     @Override

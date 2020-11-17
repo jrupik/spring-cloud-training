@@ -14,11 +14,13 @@ public class OrdersService {
 
     private final OrdersRepository ordersRepository;
     private final PaymentsService paymentsService;
+    private final OrderFee orderFee;
 
     public void placeOrder(Order order) {
-        var payment = paymentsService.pay(order.getTotalValue())
-                .orElseThrow(PaymentInitializationException::new);
-        order.setPayment(payment);
+        var paymentValue = order.getTotalValue().add(orderFee.getValue());
+        var payment = paymentsService.pay(paymentValue);
+                //.orElseThrow(PaymentInitializationException::new);
+        order.setPayment(payment.orElse(new Payment()));
         ordersRepository.saveAndFlush(order);
     }
 
