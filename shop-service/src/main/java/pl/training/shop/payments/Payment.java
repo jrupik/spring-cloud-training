@@ -3,9 +3,11 @@ package pl.training.shop.payments;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import pl.training.shop.orders.Order;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
 import java.util.Objects;
 
 @Entity
@@ -14,9 +16,8 @@ import java.util.Objects;
 @ToString
 public class Payment {
 
-    @GeneratedValue
     @Id
-    private Long id;
+    private String id;
     @Enumerated(EnumType.STRING)
     private PaymentStatus status;
 
