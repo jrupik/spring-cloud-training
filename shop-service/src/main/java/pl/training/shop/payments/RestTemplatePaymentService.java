@@ -5,6 +5,7 @@ import lombok.extern.java.Log;
 import org.javamoney.moneta.FastMoney;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import pl.training.payments.PaymentRequestTransferObject;
@@ -13,8 +14,9 @@ import pl.training.payments.PaymentTransferObject;
 import java.net.URI;
 import java.util.Optional;
 
-@Log
+@Transactional
 @Service
+@Log
 @RequiredArgsConstructor
 public class RestTemplatePaymentService implements PaymentsService {
 

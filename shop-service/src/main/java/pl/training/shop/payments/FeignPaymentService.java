@@ -6,14 +6,17 @@ import org.javamoney.moneta.FastMoney;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 import pl.training.payments.PaymentRequestTransferObject;
 import pl.training.payments.PaymentTransferObject;
 import pl.training.payments.PaymentsApi;
 
 import java.util.Optional;
-@Log
+
+@Transactional
 //@Service
+@Log
 @RequiredArgsConstructor
 public class FeignPaymentService implements PaymentsService {
 

@@ -7,6 +7,7 @@ import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import pl.training.payments.PaymentRequestTransferObject;
@@ -15,8 +16,9 @@ import pl.training.payments.PaymentTransferObject;
 import java.util.Optional;
 
 @Primary
-@Log
+@Transactional
 @Service
+@Log
 @RequiredArgsConstructor
 public class BalancedRestTemplatePaymentService implements PaymentsService {
 
