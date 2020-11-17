@@ -1,2 +1,10 @@
 server:
   port: 8001
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: payments-topic
+          content-type: application
+          groups: shop

@@ -3,6 +3,8 @@ package pl.training.shop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +20,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import javax.annotation.PostConstruct;
 
 @ComponentScan("pl.training.commons")
+@EnableBinding(Sink.class)
 @EnableFeignClients(basePackages = "pl.training.payments")
 @EnableSwagger2
 @Configuration
