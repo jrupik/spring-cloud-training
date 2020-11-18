@@ -1,7 +1,3 @@
-spring:
-  cloud:
-    config:
-      fail-fast: true
 eureka:
   client:
     serviceUrl:
