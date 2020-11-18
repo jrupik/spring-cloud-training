@@ -43,7 +43,8 @@ public class FakePaymentsService implements PaymentsService {
             payment.setStatus(PaymentStatus.CONFIRMED);
             paymentsRepository.saveAndFlush(payment);
             var paymentTransferObject = paymentsMapper.toPaymentTransferObject(payment);
-            source.output().send(MessageBuilder.withPayload(paymentTransferObject).build());
+            var message = MessageBuilder.withPayload(paymentTransferObject).build();
+            source.output().send(message);
         }).start();
     }
 
