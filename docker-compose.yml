@@ -2,22 +2,35 @@ version: '3'
 services:
   zookeeper-server:
     image: wurstmeister/zookeeper
-    ports:
-      - 2181:2181
+    #ports:
+    #  - 2181:2181
   kafka-server:
     image: wurstmeister/kafka
-    ports:
-      - 9092:9092
+    depends_on:
+      - zookeeper-server
+    #ports:
+    #  - 9092:9092
     environment:
-      KAFKA_ADVERTISED_HOST_NAME: localhost
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_HOST_NAME: kafka-server
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper-server:2181
     #volumes:
     #  - /var/run/docker.sock:/var/run/docker.sock
   configuration-server:
     image: training/configuration-server
-    ports:
-      - 8888:8888
+    depends_on:
+      - kafka-server
+    #ports:
+    #  - 8888:8888
     environment:
-      - ACTIVE_PROFILE="production"
-      - GIT_CONFIG_URI="https://github.com/landrzejewski/spring-cloud-training"
-      - KAFKA_SERVER="kafka-server"
+      - ACTIVE_PROFILE=production
+      - GIT_CONFIG_URI=https://github.com/landrzejewski/spring-cloud-training
+      - KAFKA_SERVER=kafka-server
+  discovery-server:
+    image: training/discovery-server
+    depends_on:
+      - configuration-server
+    ports:
+      - 8089:8089
+    environment:
+      - ACTIVE_PROFILE=production
+      - CONFIGURATION_SERVER_URI=https://configuration-server:8888
