@@ -4,6 +4,9 @@ spring:
     url: jdbc:postgresql://payments-database/payments
     username: admin
     password: admin
+    hikari:
+      username: admin
+      password: admin
   jpa:
     hibernate:
       ddl-auto: update
