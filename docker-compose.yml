@@ -49,3 +49,21 @@ services:
     environment:
       - ACTIVE_PROFILE=production
       - CONFIGURATION_SERVER_URI=http://configuration-server:8888
+  payments-database:
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_DB=payments
+      - POSTGRES_USERNAME=admin
+      - POSTGRES_PASSWORD=admin
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ./data/payments:/var/lib/postgresql/data/pgdata
+  shop-database:
+    image: postgres:13-alpine
+    environment:
+      - POSTGRES_DB=shop
+      - POSTGRES_USERNAME=admin
+      - POSTGRES_PASSWORD=admin
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ./data/shop:/var/lib/postgresql/data/pgdata
