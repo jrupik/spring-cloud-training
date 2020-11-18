@@ -15,9 +15,9 @@ import pl.training.payments.PaymentsApi;
 
 import java.util.Optional;
 
-@Primary
+//@Primary
 @Transactional
-@Service
+//@Service
 @Log
 @RequiredArgsConstructor
 public class FeignPaymentService implements PaymentsService {
@@ -36,13 +36,6 @@ public class FeignPaymentService implements PaymentsService {
             log.warning("Payment failed: " + exception.getMessage());
         }
         return Optional.empty();
-    }
-
-    @StreamListener(Sink.INPUT)
-    public void updatePaymentStatus(PaymentTransferObject paymentTransferObject) {
-        log.info("Payment status update: " + paymentTransferObject.toString());
-        var payment = paymentsMapper.toPayment(paymentTransferObject);
-        paymentsRepository.saveAndFlush(payment);
     }
 
 }

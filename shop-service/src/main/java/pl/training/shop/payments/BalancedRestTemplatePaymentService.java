@@ -3,6 +3,9 @@ package pl.training.shop.payments;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.javamoney.moneta.FastMoney;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Sink;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.HttpClientErrorException;
@@ -12,6 +15,7 @@ import pl.training.payments.PaymentTransferObject;
 
 import java.util.Optional;
 
+@Primary
 @Transactional
 @Service
 @Log
@@ -22,6 +26,7 @@ public class BalancedRestTemplatePaymentService implements PaymentsService {
 
     private final RestTemplate restTemplate;
     private final PaymentsMapper paymentsMapper;
+    private final PaymentsRepository paymentsRepository;
 
     @Override
     public Optional<Payment> pay(FastMoney value) {
@@ -38,4 +43,10 @@ public class BalancedRestTemplatePaymentService implements PaymentsService {
         return Optional.empty();
     }
 
+    @StreamListener(Sink.INPUT)
+    public void updatePaymentStatus(PaymentTransferObject paymentTransferObject) {
+        log.info("Payment status update: " + paymentTransferObject.toString());
+        var payment = paymentsMapper.toPayment(paymentTransferObject);
+        paymentsRepository.saveAndFlush(payment);
+    }
 }

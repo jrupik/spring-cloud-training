@@ -4,9 +4,6 @@ spring:
     url: jdbc:postgresql://shop-database/shop
     username: admin
     password: admin
-    hikari:
-      username: admin
-      password: admin
   jpa:
     hibernate:
       ddl-auto: update
