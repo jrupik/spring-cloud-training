@@ -15,26 +15,25 @@ import pl.training.payments.PaymentsApi;
 
 import java.util.Optional;
 
-@Primary
 @Transactional
 @Service
 @Log
 @RequiredArgsConstructor
 public class FeignPaymentService implements PaymentsService {
 
-    private final PaymentsApi paymentsApi;
+    //private final PaymentsApi paymentsApi;
     private final PaymentsMapper paymentsMapper;
     private final PaymentsRepository paymentsRepository;
 
     @Override
     public Optional<Payment> pay(FastMoney value) {
-        var paymentRequestTransferObject = new PaymentRequestTransferObject(value.toString());
+      /*  var paymentRequestTransferObject = new PaymentRequestTransferObject(value.toString());
         try {
             var response = paymentsApi.process(paymentRequestTransferObject);
             return Optional.of(paymentsMapper.toPayment(response.getBody()));
         } catch (HttpClientErrorException | IllegalStateException exception) {
             log.warning("Payment failed: " + exception.getMessage());
-        }
+        }*/
         return Optional.empty();
     }
 
