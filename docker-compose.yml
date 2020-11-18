@@ -1,10 +1,10 @@
 version: '3'
 services:
-  zookeeper:
+  zookeeper-server:
     image: wurstmeister/zookeeper
     ports:
       - 2181:2181
-  kafka:
+  kafka-server:
     image: wurstmeister/kafka
     ports:
       - 9092:9092
@@ -13,3 +13,11 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
     #volumes:
     #  - /var/run/docker.sock:/var/run/docker.sock
+  configuration-server:
+    image: training/configuration-server
+    ports:
+      - 8888:8888
+    environment:
+      - ACTIVE_PROFILE="production"
+      - GIT_CONFIG_URI="https://github.com/landrzejewski/spring-cloud-training"
+      - KAFKA_SERVER="kafka-server"
