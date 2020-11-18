@@ -2,10 +2,12 @@ version: '3'
 services:
   zookeeper-server:
     image: wurstmeister/zookeeper
+    restart: always
     #ports:
     #  - 2181:2181
   kafka-server:
     image: wurstmeister/kafka
+    restart: always
     depends_on:
       - zookeeper-server
     #ports:
@@ -17,6 +19,7 @@ services:
     #  - /var/run/docker.sock:/var/run/docker.sock
   configuration-server:
     image: training/configuration-server
+    restart: always
     depends_on:
       - kafka-server
     #ports:
@@ -27,10 +30,11 @@ services:
       - KAFKA_SERVER=kafka-server
   discovery-server:
     image: training/discovery-server
+    restart: always
     depends_on:
       - configuration-server
     ports:
       - 8089:8089
     environment:
       - ACTIVE_PROFILE=production
-      - CONFIGURATION_SERVER_URI=https://configuration-server:8888
+      - CONFIGURATION_SERVER_URI=http://configuration-server:8888
