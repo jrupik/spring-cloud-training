@@ -67,3 +67,23 @@ services:
       - PGDATA=/var/lib/postgresql/data/pgdata
     volumes:
       - ./data/shop:/var/lib/postgresql/data/pgdata
+  payments-service:
+    image: training/payments-service
+    restart: always
+    depends_on:
+      - configuration-server
+      - discovery-server
+      - kafka-server
+    environment:
+      - ACTIVE_PROFILE=production
+      - CONFIGURATION_SERVER_URI=http://configuration-server:8888
+  shop-service:
+    image: training/shop-service
+    restart: always
+    depends_on:
+      - configuration-server
+      - discovery-server
+      - kafka-server
+    environment:
+      - ACTIVE_PROFILE=production
+      - CONFIGURATION_SERVER_URI=http://configuration-server:8888
