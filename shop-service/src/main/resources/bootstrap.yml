@@ -3,3 +3,6 @@ spring:
     name: shop-service
   profiles:
     active: development
+  cloud:
+    config:
+      label: day-3-part-2

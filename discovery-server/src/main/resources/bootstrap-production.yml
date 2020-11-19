@@ -2,3 +2,4 @@ spring:
   cloud:
     config:
       fail-fast: true
+      label: day-3-part-2
