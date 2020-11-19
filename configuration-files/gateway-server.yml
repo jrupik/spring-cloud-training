@@ -1,6 +1,8 @@
 spring:
   cloud:
     gateway:
+      default-filters:
+        - TokenRelay
       routes:
         - id: payments
           predicates:
@@ -14,3 +16,14 @@ spring:
           uri: lb://SHOP-SERVICE
           filters:
             - RewritePath=/api/shop(?<segment>.*), $\{segment}
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            issuer-uri: http://localhost:8000/auth/realms/cloud
+            user-name-attribute: preferred_username
+        registration:
+          keycloak:
+            client-id: cloud-service
+postLogoutRedirectUrl: http://localhost:8080
