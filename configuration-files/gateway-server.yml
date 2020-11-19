@@ -26,6 +26,8 @@ spring:
         registration:
           keycloak:
             client-id: cloud-service
+            authorization-grant-type: password
+            scope: read, write
 postLogoutRedirectUrl: http://localhost:8080
 logging:
   level:

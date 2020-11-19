@@ -24,7 +24,9 @@ public class SecurityConfig {
 															OidcClientInitiatedServerLogoutSuccessHandler logoutSuccessHandler) {
 		http.oauth2Login();
 		http.logout(logout -> logout.logoutSuccessHandler(new OidcClientInitiatedServerLogoutSuccessHandler(clientRegistrationRepository)));
-		http.authorizeExchange().anyExchange().authenticated();
+		http.authorizeExchange()
+				.pathMatchers("/api/**").authenticated()
+				.anyExchange().permitAll();
 		http.logout().logoutSuccessHandler(logoutSuccessHandler);
 		http.exceptionHandling().accessDeniedHandler(new AccessDeniedHandler());
 		http.csrf().disable();
