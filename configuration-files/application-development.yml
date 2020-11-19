@@ -4,5 +4,5 @@ eureka:
       defaultZone: http://127.0.0.1:8089/eureka/
 keycloak:
   realm: cloud
-  auth-server-uri: http://localhost:8000/auth
+  auth-server-url: http://localhost:8000/auth
   resource: cloud-service
