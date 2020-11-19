@@ -109,7 +109,19 @@ services:
     ports:
       - 9093:9093
     volumes:
-      - ./configuration-files/alertmanager.yml:/etc/prometheus/alertmanager.yml
-
+      - ./configuration-files/alertmanager.yml:/etc/alertmanager/alertmanager.yml
+  grafana:
+    image: grafana/grafana
+    restart: always
+    depends_on:
+      - prometheus
+    ports:
+      - 3000:3000
+    volumes:
+      - ./configuration-files/datasources.yml:/etc/grafana/provisioning/datasources/datasources.yml
+  jaeger:
+    image: jaegertracing/all-in-one
+    ports:
+      - 16686:16686
 
 

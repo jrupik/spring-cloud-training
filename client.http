@@ -102,3 +102,4 @@ path=shop-service
 http://localhost:9000/actuator/prometheus
 
 # rate(http_server_requests_seconds_count{uri="/payments"}[5m])
+# Spring Boot Grafana dashboard id 4701
