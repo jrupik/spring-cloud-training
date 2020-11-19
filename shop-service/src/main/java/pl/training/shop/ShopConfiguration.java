@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.client.RestTemplate;
 import pl.training.commons.LocalMoney;
+import pl.training.shop.commons.SecurityTokenProvider;
 import pl.training.shop.products.Product;
 import pl.training.shop.products.ProductsRepository;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -23,6 +24,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
+import java.util.Set;
 
 @ComponentScan("pl.training.commons")
 @EnableCircuitBreaker
@@ -60,7 +63,14 @@ public class ShopConfiguration {
     @LoadBalanced
     @Bean
     public RestTemplate restTemplate() {
-        return new RestTemplate();
+        var restTemplate = new RestTemplate();
+        var interceptors = restTemplate.getInterceptors();
+        if (interceptors.isEmpty()) {
+            interceptors = new ArrayList<>();
+        }
+        interceptors.add(new SecurityTokenProvider());
+        restTemplate.setInterceptors(interceptors);
+        return restTemplate;
     }
 
 }
