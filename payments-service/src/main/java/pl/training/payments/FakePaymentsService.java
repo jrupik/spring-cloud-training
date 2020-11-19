@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.cloud.stream.messaging.Source;
 import org.springframework.messaging.support.MessageBuilder;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ public class FakePaymentsService implements PaymentsService {
     private final Source source;
     private final PaymentsMapper paymentsMapper;
 
+    @Secured("ROLE_client")
     @Override
     public Payment process(PaymentRequest paymentRequest) {
         var payment = Payment.builder()
