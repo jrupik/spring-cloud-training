@@ -27,8 +27,10 @@ public class FakePaymentsService implements PaymentsService {
                 .status(PaymentStatus.STARTED)
                 .timestamp(LocalDateTime.now())
                 .build();
+        paymentsRepository.saveAndFlush(payment);
         processPayment(payment);
-        return paymentsRepository.saveAndFlush(payment);
+        //fakeDelay();
+        return payment;
     }
 
     @Override

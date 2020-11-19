@@ -13,8 +13,8 @@ services:
     ports:
       - 9092:9092
     environment:
-      #KAFKA_ADVERTISED_HOST_NAME: localhost
-      KAFKA_ADVERTISED_HOST_NAME: kafka-server
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      #KAFKA_ADVERTISED_HOST_NAME: kafka-server
       KAFKA_ZOOKEEPER_CONNECT: zookeeper-server:2181
     #volumes:
     #  - /var/run/docker.sock:/var/run/docker.sock
@@ -123,5 +123,11 @@ services:
     image: jaegertracing/all-in-one
     ports:
       - 16686:16686
-
+  keycloak:
+    image: jboss/keycloak
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+    ports:
+      - 8000:8080
 
