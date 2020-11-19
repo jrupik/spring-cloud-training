@@ -49,7 +49,7 @@ public class SecurityConfiguration extends KeycloakWebSecurityConfigurerAdapter 
     protected void configure(HttpSecurity http) throws Exception {
         super.configure(http);
         http.csrf().disable().authorizeRequests()
-                .mvcMatchers("/payments").hasRole("client");
+                .mvcMatchers("/payments/**").hasRole("client");
     }
 
 }

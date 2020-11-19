@@ -11,7 +11,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @FeignClient("payments-service")
 @Validated
-@RequestMapping(value = "payments", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+@RequestMapping(value = "payments")//, consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
 public interface PaymentsApi {
 
     @RequestMapping(method = RequestMethod.POST)

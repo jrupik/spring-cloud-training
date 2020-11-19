@@ -6,3 +6,4 @@ keycloak:
   realm: cloud
   auth-server-url: http://localhost:8000/auth
   resource: cloud-service
+  public-client: true
