@@ -103,5 +103,13 @@ services:
       - 9090:9090
     volumes:
       - ./configuration-files/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./configuration-files/rules.yml:/etc/prometheus/rules.yml
+  alertmanager:
+    image: prom/alertmanager
+    ports:
+      - 9093:9093
+    volumes:
+      - ./configuration-files/alertmanager.yml:/etc/prometheus/alertmanager.yml
+
 
 
