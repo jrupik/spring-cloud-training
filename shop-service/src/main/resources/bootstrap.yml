@@ -1,6 +1,9 @@
 spring:
   application:
     name: shop-service
+  cloud:
+    config:
+      label: day-4
   profiles:
     active: development
 encrypt:
